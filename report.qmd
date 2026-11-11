@@ -1,0 +1,54 @@
+---
+title: "Why Are Bank Customers Leaving? A Churn Analysis"
+author: "Areej Bahar"
+format:
+  html:
+    embed-resources: true
+---
+
+## The business problem
+
+A bank is losing about 1 in 5 customers (20.4% churn). Winning a new customer costs far more than keeping an existing one, so the question is: **who is leaving, and what should the bank do about it?**
+
+## Data and method
+
+-   Data: 10,000 bank customers (Kaggle "Churn Modelling" dataset), with age, country, products held, activity status and whether the customer left.
+-   Cleaned and prepared in R (tidyverse), then analysed with SQL in MySQL Workbench, and charted in R (ggplot2).
+-   Code is in the `scripts` folder of this repository.
+
+## Findings
+
+### 1. Customers with one product drive most of the churn, and 3+ products is a red flag
+
+![Churn by number of products](outputs/churn_by_products.png)
+
+Customers with two products are the most loyal (7.6% churn). Single-product customers leave at 27.7% and make up roughly 69% of all churn. Almost everyone holding three or four products left, although that is a small group (326 customers).
+
+### 2. Inactive members leave at nearly twice the rate of active ones
+
+![Churn by activity](outputs/churn_by_activity.png)
+
+Inactive members churn at 26.9% versus 14.3% for active members. They are about 48% of customers but roughly 64% of all churn.
+
+### 3. Customers aged 40-59 are the most likely to leave
+
+![Churn by age group](outputs/churn_by_age.png)
+
+Churn peaks at 56% for ages 50-59 and 30.8% for ages 40-49. Together these groups are about 35% of customers but roughly 63% of churn.
+
+### Supporting finding: Germany
+
+Germany has a churn rate of 32.4%, about double Spain (16.7%) and France (16.2%). It has a quarter of the customers but about 40% of the churn.
+
+## Recommendations
+
+1.  **Re-engage inactive members before they leave**, for example with a call or offer when activity drops.
+2.  **Investigate why customers with 3+ products leave.** Check fees, product bundling and how these products are sold.
+3.  **Pilot a second-product offer for single-product customers** and measure whether churn falls.
+4.  **Prioritise retention efforts for customers aged 40-59 and in Germany.**
+
+## Limitations
+
+-   This is a snapshot, so the findings show association, not cause. For example, holding two products may not itself reduce churn, which is why the second-product idea is a pilot.
+-   There is no revenue data, so the dollar value of these recommendations cannot be estimated.
+-   The 3+ product group is small, so those rates are less stable.
